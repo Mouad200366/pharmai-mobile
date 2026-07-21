@@ -18,8 +18,9 @@
       }
     },
   "extra": {
-     "apiBaseUrl": "http://192.168.1.54:8000/api/v1",
-     "wsBaseUrl": "ws://192.168.1.21:8000/ws"
-   }
+   "apiBaseUrl": "http://192.168.1.54:8000/api/v1",
+   "wsBaseUrl": "ws://192.168.1.54:8000/ws",
+   "pharmagentUrl": "http://192.168.1.54:8001"
+ }
   }
 }

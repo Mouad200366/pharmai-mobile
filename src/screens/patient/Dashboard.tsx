@@ -13,6 +13,7 @@ import type { CompositeScreenProps } from '@react-navigation/native'
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import type { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useFocusEffect } from '@react-navigation/native'
+import { LinearGradient } from 'expo-linear-gradient'
 import type { AppTabParamList, MainStackParamList } from '../../navigation/types'
 import Icon from '../../components/ui/Icon'
 import { ordersApi, type Order, STATUS_LABELS, STATUS_COLOR, isActiveOrder } from '../../api/orders'
@@ -150,6 +151,30 @@ export default function Dashboard({ navigation }: Props) {
         <StatCard icon="pending" label="En cours" value={activeOrders.length} color="#d97706" bg="#fffbeb" />
         <StatCard icon="check_circle" label="Livrées" value={completedOrders.length} color="#16a34a" bg="#f0fdf4" />
       </View>
+
+      {/* PharmAgent entry point -- new AI assistant feature, given its own
+          prominent card rather than folded into the quick-actions grid
+          below, since it's a differentiator worth surfacing clearly. */}
+      <Pressable onPress={() => navigation.navigate('Assistant')}>
+        <LinearGradient
+          colors={[colors.primary, '#00687a']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.assistantCard}
+        >
+          <View style={styles.assistantIcon}>
+            <Icon name="smart_toy" size={22} color={colors.white} />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.assistantTitle}>Assistant IA PharmAgent</Text>
+            <Text style={styles.assistantSubtitle}>
+              Décrivez vos symptômes, obtenez un conseil et la pharmacie la plus proche
+            </Text>
+          </View>
+          <Icon name="chevron_right" size={20} color="#ffffffcc" />
+        </LinearGradient>
+      </Pressable>
+      
 
       {/* Quick actions */}
       <View style={styles.actionsGrid}>
@@ -317,6 +342,16 @@ const styles = StyleSheet.create({
   statIcon: { width: 36, height: 36, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
   statValue: { fontSize: 20, fontWeight: '800', color: colors.textPrimary },
   statLabel: { fontSize: 11, color: colors.textSecondary },
+  assistantCard: {
+    flexDirection: 'row', alignItems: 'center', gap: 12,
+    borderRadius: 18, padding: 16,
+  },
+  assistantIcon: {
+    width: 42, height: 42, borderRadius: 13, backgroundColor: '#ffffff26',
+    alignItems: 'center', justifyContent: 'center',
+  },
+  assistantTitle: { color: colors.white, fontWeight: '700', fontSize: 14 },
+  assistantSubtitle: { color: '#ffffffcc', fontSize: 11, marginTop: 3, lineHeight: 15 },
   actionsGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   actionCard: {
     width: '47%',

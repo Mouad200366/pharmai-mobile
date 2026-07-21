@@ -5,6 +5,8 @@ import Cart from '../screens/patient/Cart'
 import Checkout from '../screens/patient/Checkout'
 import OrderDetail from '../screens/patient/OrderDetail'
 import Addresses from '../screens/patient/Addresses'
+import Assistant from '../screens/patient/Assistant'
+
 
 const Stack = createNativeStackNavigator<MainStackParamList>()
 
@@ -20,6 +22,7 @@ export default function MainStack() {
       <Stack.Screen name="Checkout" component={Checkout} options={{ title: 'Commande' }} />
       <Stack.Screen name="OrderDetail" component={OrderDetail} options={{ title: 'Détail de la commande' }} />
       <Stack.Screen name="Addresses" component={Addresses} options={{ title: 'Adresses enregistrées' }} />
+      <Stack.Screen name="Assistant" component={Assistant} options={{ title: 'PharmAgent' }} />
     </Stack.Navigator>
   )
 }

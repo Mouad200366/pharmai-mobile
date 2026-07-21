@@ -26,6 +26,7 @@ export type MainStackParamList = {
   Checkout: undefined
   OrderDetail: { id: number }
   Addresses: undefined
+  Assistant: undefined
 }
 
 export type RootStackParamList = {
